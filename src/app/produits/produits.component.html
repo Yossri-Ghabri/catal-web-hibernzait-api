@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Liste des produits
+    </div>
+    <div class="panel-body">
+      <button class="btn btn-primary" (click)="onGetProducts()">Produits</button>
+    </div>
+    <div class="panel-body">
+      <form #f="ngForm" (ngSubmit)="onCherhcer(f.value)">
+        <div class="form-group">
+          <label>keyword</label>
+          <input type="text" name="keyword" ngModel>
+          <button type="submit" class="btn btn-primary">Chercher</button>
+        </div>
+      </form>
+      <table *ngIf="produits" class="table table-striped"> <!-- si il ya des donnee charger dans le produits donc affiche si nn nest pas afficher -->
+        <tr>
+          <th>ID</th>
+          <th>DES</th>
+          <th>PRIX</th>
+          <th>QTE</th>
+        </tr>
+        <tr *ngFor="let p of produits._embedded.products">
+          <td>{{p.id}}</td>
+          <td>{{p.designation | titlecase}}</td>
+          <td>{{p.price | number: '0.2'}}</td>
+          <td>{{p.quantite}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
